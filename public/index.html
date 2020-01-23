@@ -82,7 +82,9 @@
 
       // @John, this is a feathers client that can listen for
       // real time events over a socket.io connection. This could
-      // be used in both the web app and a react native app.
+      // be used in both the web app and a react native app. There is
+      // no server side setup or anything on the Rails side. This is pure
+      // client side JS as you can see from the script tags above
       app.service('sms').on('created', message => {
         console.log('New SMS message created', message)
       });
@@ -100,9 +102,7 @@
       // feathers app whenever an update happens. It is then
       // basically a socket proxy to clients.
       function handleSMS() {
-        // app.service('sms').create({
-        //   text: 'A message from a REST client'
-        // });
+        // fetch = Rails.makeHTTPReq(...) or whatver
         fetch('http://localhost:3030/sms', {
           method: 'POST',
           headers: {
@@ -114,9 +114,7 @@
       }
 
       function handleDM() {
-        // app.service('direct-message').create({
-        //   text: 'A message from a REST client'
-        // });
+        // fetch = Rails.makeHTTPReq(...) or whatver
         fetch('http://localhost:3030/direct-message', {
           method: 'POST',
           headers: {
